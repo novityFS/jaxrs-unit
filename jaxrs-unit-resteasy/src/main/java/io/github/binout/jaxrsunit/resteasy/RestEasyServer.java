@@ -36,11 +36,11 @@ public class RestEasyServer implements JaxrsServer {
     @Override
     public void configure(JaxrsServerConfig config) {
         baseUrl = config.getBaseUrl();
-        for (Class<?> resourceClass : config.getResources()) {
-            dispatcher.getRegistry().addResourceFactory(new POJOResourceFactory(resourceClass));
-        }
         for (Class<?> providerClass : config.getProviders()) {
             dispatcher.getProviderFactory().registerProvider(providerClass);
+        }
+        for (Class<?> resourceClass : config.getResources()) {
+            dispatcher.getRegistry().addResourceFactory(new POJOResourceFactory(resourceClass));
         }
     }
 
